@@ -1,5 +1,5 @@
 //
-//  UICollectionView+AggregateUpdates.h
+//  UICollectionView+NSFetchedResultsController.h
 //
 //  A simple category on UICollectionView to perform content changes in UITableView fashion.
 //  Comes handy with NSFetchedResultsController.
@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UICollectionView (AggregateUpdates)
+@interface UICollectionView (NSFetchedResultsController)
 
 - (void)beginUpdates;
 - (void)endUpdatesWithCompletion:(void(^)(BOOL finished))completion;
