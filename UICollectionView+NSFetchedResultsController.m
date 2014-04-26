@@ -8,7 +8,7 @@
 //  Copyright (c) 2014 pronebird. All rights reserved.
 //
 
-#import "UICollectionView+AggregateUpdates.h"
+#import "UICollectionView+NSFetchedResultsController.h"
 #import <objc/runtime.h>
 
 static const void* kHasBegunUpdatesKey = &kHasBegunUpdatesKey;
@@ -25,7 +25,7 @@ static void PBSwizzleMethod(Class c, SEL original, SEL alternate) {
 	}
 }
 
-@implementation UICollectionView (AggregateUpdates)
+@implementation UICollectionView (NSFetchedResultsController)
 
 - (NSMutableArray*)pb_batchUpdateBlocks {
 	NSMutableArray* blocks = objc_getAssociatedObject(self, kBatchUpdateBlocksKey);
