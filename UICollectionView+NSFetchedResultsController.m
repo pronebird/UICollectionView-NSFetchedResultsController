@@ -166,11 +166,23 @@ static void PBSwizzleMethod(Class c, SEL original, SEL alternate) {
 - (void)endUpdatesWithCompletion:(void(^)(BOOL finished))completion {
 	NSArray* blocks = [self pb_batchUpdateBlocks];
 	
-	[self performBatchUpdates:^{
-		for(void(^block)(void) in blocks) {
-			block();
+	// A workaround for a weird bug when UICollectionView is not on screen
+	if(self.window)
+	{
+		[self performBatchUpdates:^{
+			for(void(^block)(void) in blocks) {
+				block();
+			}
+		} completion:completion];
+	}
+	else
+	{
+		[self reloadData];
+		
+		if(completion) {
+			completion(YES);
 		}
-	} completion:completion];
+	}
 	
 	[self pb_removeAllBatchUpdateBlocks];
 	[self pb_setBeginUpdates:NO];
