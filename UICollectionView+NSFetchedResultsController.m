@@ -39,7 +39,7 @@ static void PBSwizzleMethod(Class c, SEL original, SEL alternate) {
 }
 
 - (void)pb_addBatchUpdateBlock:(void(^)(void))block {
-	[[self pb_batchUpdateBlocks] addObject:block];
+	[[self pb_batchUpdateBlocks] addObject:[block copy]];
 }
 
 - (void)pb_removeAllBatchUpdateBlocks {
